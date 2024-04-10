@@ -3,5 +3,13 @@
         "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
         "server": "cd backend && npm run start:dev",
         "client": "cd client && npm run dev"
+    },
+    "dependencies": {
+        "@nestjs/config": "^3.2.2",
+        "@nestjs/jwt": "^10.2.0",
+        "passport-jwt": "^4.0.1"
+    },
+    "devDependencies": {
+        "@types/passport-jwt": "^4.0.1"
     }
 }
