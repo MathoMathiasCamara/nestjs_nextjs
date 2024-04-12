@@ -8,11 +8,14 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaModule } from 'src/prisma/prisma.module';
 @Module({
   providers: [
     AuthService, 
     LocalStrategy, 
     JwtStrategy, 
+    PrismaService,
     {
     provide: APP_GUARD,
     useClass: JwtAuthGuard,
@@ -21,6 +24,7 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
   imports: [
     UserModule,
     PassportModule,
+    PrismaModule,
     JwtModule.registerAsync({
       useFactory: async () => ({
         secret: process.env.JWT_SECRET_KEY,

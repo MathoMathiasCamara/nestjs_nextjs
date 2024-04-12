@@ -3,6 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import { Request } from 'express';
 import { TokenPayload } from '../token-payload.interface';
+import { JWT_SECRET_KEY } from 'src/constants';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -13,7 +14,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
           return request.cookies?.Authentication;
         },
       ]),
-      secretOrKey: process.env.JWT_SECRET_KEY,
+      secretOrKey: JWT_SECRET_KEY,
     });
   }
 
