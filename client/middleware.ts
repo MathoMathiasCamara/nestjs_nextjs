@@ -9,7 +9,9 @@ export function middleware(request: NextRequest) {
  
   if (!currentUser ) {
 
-    if(!request.nextUrl.pathname.startsWith('/signin') && !request.nextUrl.pathname.startsWith('/signup'))
+    if(!request.nextUrl.pathname.startsWith('/signin') && 
+    !request.nextUrl.pathname.startsWith('/signup') && 
+    !request.nextUrl.pathname.startsWith('/change-password'))
     return NextResponse.redirect(new URL('/signin', request.url))
   }
 

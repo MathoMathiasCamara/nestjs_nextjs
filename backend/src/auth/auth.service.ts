@@ -48,6 +48,21 @@ export class AuthService {
 
     async signup(signupDto: UserSignUpDto) {
         try {
+            
+            const findByPhone = await this.userService.findByPhone(signupDto.phone);
+            if(findByPhone)
+                return <ApiResponse<null>>{
+                    message: 'Ce Numero de telephone appartient a un autre compte!',
+                    success: false,
+                }
+    
+            const findByEmail = await this.userService.findOne(signupDto.email);
+            if(findByEmail)
+                return <ApiResponse<null>>{
+                    message: 'Ce Email appartient a un autre compte!',
+                    success: false,
+                }
+
             const hash = await bcrypt.hashSync(signupDto.password, Number(process.env.PASSWORD_SALT_ROUNDS));
             const user = await this.prismaService.user.create({
                 data: {
@@ -57,6 +72,7 @@ export class AuthService {
                     hash: hash
                 }
             });
+
             if (!user.id)
                 return <ApiResponse<null>>{
                     message: 'Compte non enregistrer!',
@@ -64,7 +80,7 @@ export class AuthService {
                 }
 
             return <ApiResponse<null>>{
-                message: 'Compte  enregistrer!',
+                message: 'Compte enregistrer!',
                 success: true,
             }
 
@@ -86,10 +102,10 @@ export class AuthService {
         }
     }
 
+
     async validateUser(username: string, pass: string): Promise<ApiResponse<any>> {
         try {
             const user = await this.userService.findOne(username);
-            Logger.debug('searching user in database',{username,pass});
             const authenticated = await bcrypt.compare(pass, user.hash);
             if (!authenticated) {
                 throw new UnauthorizedException('Credentials are not valid.');

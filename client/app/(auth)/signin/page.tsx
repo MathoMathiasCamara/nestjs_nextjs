@@ -52,7 +52,8 @@ export default function SignIn() {
             </div>
 
             <div >
-              <Label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+              <Label htmlFor="password" 
+              className="block text-sm font-medium leading-6 text-gray-900">
                 Mot de passe
               </Label>
               <div>
@@ -63,15 +64,23 @@ export default function SignIn() {
                   placeholder='m0nm0td3pass'
                   autoComplete="current-password"
                   aria-describedby='password-error'
-                  />
-                  <div id='password-error' aria-live='polite' aria-atomic='true'>
-                    {
-                      state.errors?.password && state.errors.password.map((error: string) => (
-                        <p className='mt-2 text-sm text-red-500' key={error}>{error}</p>
-                      ))
-                    }
-                  </div>
+                />
+                <div id='password-error' aria-live='polite' aria-atomic='true'>
+                  {
+                    state.errors?.password && state.errors.password.map((error: string) => (
+                      <p className='mt-2 text-sm text-red-500' key={error}>{error}</p>
+                    ))
+                  }
+                </div>
               </div>
+            </div>
+            <div className='flex flex-row mt-2 justify-end'>
+              <Link
+                className='text-sm underline-offset-4 hover:underline'
+                href="/change-password"
+              >
+                Mot de passe oublier?
+              </Link>
             </div>
 
           </CardContent>
