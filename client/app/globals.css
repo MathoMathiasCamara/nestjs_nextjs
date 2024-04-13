@@ -50,6 +50,10 @@
   }
 }
 
+#search-field {
+  border-width: 0px !important;
+
+}
 
 @layer base {
   * {

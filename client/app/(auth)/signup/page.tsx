@@ -16,7 +16,7 @@ export default function SignUp() {
   return (
     <>
       <form action={dispatch}>
-        <Card className="mt-16 sm:mx-auto sm:w-full sm:max-w-[350px]">
+        <Card className="sm:mx-auto sm:w-full sm:max-w-[350px]">
           <CardHeader>
             <CardTitle>Nouveau compte</CardTitle>
             <CardDescription>Créer votre nouveau compte en un clic.</CardDescription>

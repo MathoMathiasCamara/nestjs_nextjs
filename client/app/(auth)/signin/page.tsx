@@ -23,7 +23,7 @@ export default function SignIn() {
   return (
     <>
       <form className='space-y-3' action={dispatch}>
-        <Card className="mt-16 sm:mx-auto sm:w-full sm:max-w-[350px]">
+        <Card className="sm:mx-auto sm:w-full sm:max-w-[350px]">
           <CardHeader>
             <CardTitle>Connectez-vous</CardTitle>
             <CardDescription>Vous êtes à un clic de simplifier votre activité de location d'appartements.</CardDescription>
