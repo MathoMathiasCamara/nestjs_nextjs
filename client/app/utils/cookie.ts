@@ -14,3 +14,7 @@ export const setAuthCookie = (response: Response) => {
       });
     }
   };
+
+export const removeCookie = (cookieName: string) =>{
+  cookies().delete(cookieName);
+}

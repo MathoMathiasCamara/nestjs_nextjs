@@ -52,7 +52,7 @@
 
 #search-field {
   border-width: 0px !important;
-
+  box-shadow: 0px 0px 0px 0px rgba(255,255,255,1) !important;
 }
 
 @layer base {
