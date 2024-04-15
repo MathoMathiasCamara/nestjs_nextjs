@@ -23,48 +23,39 @@ export default function SignIn() {
   return (
     <>
       <form className='space-y-3' action={dispatch}>
-        <Card className="sm:mx-auto sm:w-full sm:max-w-[350px]">
+        <Card className="mx-auto max-w-sm">
           <CardHeader>
-            <CardTitle>Connectez-vous</CardTitle>
-            <CardDescription>Vous êtes à un clic de simplifier votre activité de location d'appartements.</CardDescription>
+            <CardTitle className="text-2xl">Se connecter</CardTitle>
+            <CardDescription>
+              Entrez votre email ci-dessous pour vous connecter à votre compte
+            </CardDescription>
           </CardHeader>
-          <CardContent className='space-y-3'>
-
-            <div >
-              <Label htmlFor="email">
-                Email
-              </Label>
-              <Input
-                id="username"
-                name="username"
-                type="email"
-                placeholder='monemail@gmail.com'
-                autoComplete="username"
-                aria-describedby='username-error'
-              />
-              <div id='username-error' aria-live='polite' aria-atomic='true'>
-                {
-                  state.errors?.username && state.errors.username.map((error: string) => (
-                    <p className='mt-2 text-sm text-red-500' key={error}>{error}</p>
-                  ))
-                }
-              </div>
-            </div>
-
-            <div >
-              <Label htmlFor="password" 
-              className="block text-sm font-medium leading-6 text-gray-900">
-                Mot de passe
-              </Label>
-              <div>
+          <CardContent>
+            <div className="grid gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="username">Email</Label>
                 <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder='m0nm0td3pass'
-                  autoComplete="current-password"
-                  aria-describedby='password-error'
+                  id="username"
+                  name='username'
+                  type="email"
+                  placeholder="m@example.com"
                 />
+                <div id='username-error' aria-live='polite' aria-atomic='true'>
+                  {
+                    state.errors?.username && state.errors.username.map((error: string) => (
+                      <p className='mt-2 text-sm text-red-500' key={error}>{error}</p>
+                    ))
+                  }
+                </div>
+              </div>
+              <div className="grid gap-2">
+                <div className="flex items-center">
+                  <Label htmlFor="password">Password</Label>
+                  <Link href="/change-password" className="ml-auto inline-block text-sm underline">
+                    Mot de passe oublié?
+                  </Link>
+                </div>
+                <Input id="password" name='password' type="password" />
                 <div id='password-error' aria-live='polite' aria-atomic='true'>
                   {
                     state.errors?.password && state.errors.password.map((error: string) => (
@@ -73,31 +64,23 @@ export default function SignIn() {
                   }
                 </div>
               </div>
+              <div id='message-error' aria-live='polite' aria-atomic='true'>
+                {
+                  state.message &&
+                  <p className='mt-2 text-sm text-red-500' >{state.message}</p>
+                }
+              </div>
+              <Button type="submit" className="w-full">
+                Se connecter
+              </Button>
             </div>
-            <div className='flex flex-row mt-2 justify-end'>
-              <Link
-                className='text-sm underline-offset-4 hover:underline'
-                href="/change-password"
-              >
-                Mot de passe oublier?
+            <div className="mt-4 text-center text-sm">
+              Vous n&apos;avez pas de compte?{" "}
+              <Link href="/signup" className="underline">
+                S'inscrire
               </Link>
             </div>
-
           </CardContent>
-          <CardFooter className="flex justify-between">
-            <Link
-              className='text-primary underline-offset-4 hover:underline'
-              href="/signup"
-            >
-              J'ai pas de compte
-            </Link>
-
-            <Button
-              type="submit"
-            >
-              Se connecter
-            </Button>
-          </CardFooter>
         </Card>
       </form>
     </>

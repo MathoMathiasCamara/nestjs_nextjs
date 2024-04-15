@@ -15,80 +15,61 @@ export default function ChangePassword() {
     return (
         <>
             <form className='space-y-3' action={dispatch} >
-                <Card className="mt-16 sm:mx-auto sm:w-full sm:max-w-[350px]">
-                    <CardHeader>
-                        <CardTitle>Nouveau mot de passe</CardTitle>
-                        <CardDescription>Veuillez remplir les champs dessous.</CardDescription>
-                    </CardHeader>
-                    <CardContent className='space-y-3'>
-
-                        <div >
-                            <Label htmlFor="email">
-                                Email
-                            </Label>
-                            <Input
-                                id="email"
-                                name="email"
-                                type="email"
-                                placeholder='monemail@gmail.com'
-                                autoComplete="email"
-                                aria-describedby='email-error'
-                            />
-                            <div id='email-error' aria-live='polite' aria-atomic='true'>
-                                {
-                                    state.errors?.email && state.errors.email.map((error: string) => (
-                                        <p className='mt-2 text-sm text-red-500' key={error}>{error}</p>
-                                    ))
-                                }
-                            </div>
-                        </div>
-
-                        <div >
-                            <Label htmlFor="newPassword"
-                                className="block text-sm font-medium leading-6 text-gray-900">
-                                Nouveau Mot de passe
-                            </Label>
-                            <div>
-                                <Input
-                                    id="newPassword"
-                                    name="newPassword"
-                                    type="newPassword"
-                                    placeholder='secret'
-                                    autoComplete="current-password"
-                                    aria-describedby='newPassword-error'
-                                />
-                                <div id='newPassword-error' aria-live='polite' aria-atomic='true'>
-                                    {
-                                        state.errors?.newPassword && state.errors.newPassword.map((error: string) => (
-                                            <p className='mt-2 text-sm text-red-500' key={error}>{error}</p>
-                                        ))
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                        <div aria-live='polite' aria-atomic='true'>
-                            {
-                                state.message &&
-                                <p className='mt-2 text-sm text-red-500'>{state.message}</p>
-
-                            }
-                        </div>
-                    </CardContent>
-                    <CardFooter className="flex justify-between">
-                        <Link
-                            className='text-primary underline-offset-4 hover:underline'
-                            href="/signin"
-                        >
-                            Annuler
-                        </Link>
-
-                        <Button
-                            type="submit"
-                        >
-                            Changer mot de passe
-                        </Button>
-                    </CardFooter>
-                </Card>
+            <Card className="mx-auto max-w-sm">
+          <CardHeader>
+            <CardTitle className="text-2xl">Changer votre mot de passe</CardTitle>
+            <CardDescription>
+              Entrez votre email et votre nouveau mot de passe ci-dessous
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  name='email'
+                  type="email"
+                  placeholder="m@example.com"
+                />
+                <div id='email-error' aria-live='polite' aria-atomic='true'>
+                  {
+                    state.errors?.email && state.errors.email.map((error: string) => (
+                      <p className='mt-2 text-sm text-red-500' key={error}>{error}</p>
+                    ))
+                  }
+                </div>
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="newPassword">Nouveau Mot de passe</Label>
+                <Input id="newPassword" name='newPassword' type="password" />
+                <div id='newPassword-error' aria-live='polite' aria-atomic='true'>
+                  {
+                    state.errors?.newPassword && state.errors.newPassword.map((error: string) => (
+                      <p className='mt-2 text-sm text-red-500' key={error}>{error}</p>
+                    ))
+                  }
+                </div>
+              </div>
+              <div id='message-error' aria-live='polite' aria-atomic='true'>
+                {
+                  state.message &&
+                  <p className='mt-2 text-sm text-red-500' >{state.message}</p>
+                }
+              </div>
+              <Button type="submit" className="w-full">
+                Changer mot de passe
+              </Button>
+              
+            </div>
+            <div className="mt-4 text-center text-sm">
+              Vous avez un compte?{" "}
+              <Link href="/signin" className="underline">
+                Se connecter
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
             </form>
         </>
     )

@@ -15,9 +15,7 @@ export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Post('signin')
     async signin(@CurrentUser() user:any ,@Res({ passthrough: true }) response: Response) {
-        Logger.log('signing userId:',user.email);
         const result = await this.authService.signin(user,response);
-        Logger.log('user {0} signed in',user.email);
         if(!result.success) throw new HttpException(result.message,HttpStatus.INTERNAL_SERVER_ERROR);
 
         return result;
@@ -26,9 +24,7 @@ export class AuthController {
     @Public()
     @Post('signup')
     async signup(@Body() data: UserSignUpDto) {
-        Logger.log('signing up user:',data.email);
         const result = await this.authService.signup(data);
-        Logger.log('user {0} signed up',data.email);
         if(!result.success) throw new HttpException(result.message,HttpStatus.INTERNAL_SERVER_ERROR);
 
         return result;
