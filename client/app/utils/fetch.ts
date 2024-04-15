@@ -1,6 +1,5 @@
 import { cookies } from "next/headers";
 import { BACKEND_URL } from "../constants/api";
-import ApiResponse from "../common/api.response";
 
 const getHeaders = () => ({
     Cookie: cookies().toString(),

@@ -12,14 +12,14 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { PrismaModule } from 'src/prisma/prisma.module';
 @Module({
   providers: [
-    AuthService, 
-    LocalStrategy, 
-    JwtStrategy, 
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
     PrismaService,
     {
-    provide: APP_GUARD,
-    useClass: JwtAuthGuard,
-  }],
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    }],
   controllers: [AuthController],
   imports: [
     UserModule,

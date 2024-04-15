@@ -4,8 +4,11 @@ import { Label } from '@/components/ui/label'
 import { KeyIcon, PhoneOutgoingIcon, UserCircleIcon } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
+import { getProfile } from './actions'
 
-export default function Profile() {
+export default async function Profile() {
+
+  const userProfile = await getProfile();
   return (
     <form>
       <div className="space-y-12">
@@ -48,6 +51,7 @@ export default function Profile() {
                   id="email"
                   name="email"
                   type="email"
+                  defaultValue={userProfile?.email}
                   autoComplete="email"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -55,14 +59,15 @@ export default function Profile() {
             </div>
 
             <div className="col-span-full">
-              <Label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
+              <Label htmlFor="fullname" className="block text-sm font-medium leading-6 text-gray-900">
                 Prenoms & Nom
               </Label>
               <div className="mt-2">
                 <Input
                   type="text"
-                  name="first-name"
-                  id="first-name"
+                  name="fullname"
+                  id="fullname"
+                  defaultValue={userProfile?.fullname}
                   autoComplete="given-name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -70,15 +75,16 @@ export default function Profile() {
             </div>
 
             <div className="col-span-full">
-              <Label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
-                Adresse
+              <Label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">
+                Telephone
               </Label>
               <div className="mt-2">
                 <Input
                   type="text"
-                  name="street-address"
-                  id="street-address"
-                  autoComplete="street-address"
+                  name="phone"
+                  defaultValue={userProfile?.phone}
+                  id="phone"
+                  autoComplete="phone"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -94,9 +100,11 @@ export default function Profile() {
       </div>
 
       <div className="mt-6 flex items-center justify-between gap-x-6">
-        <Button type="button" variant='outline' >
-          Annuler
-        </Button>
+        <Link href="/dashboard">
+          <Button type="button" variant='outline' >
+            Annuler
+          </Button>
+        </Link>
         <Button
           type="submit"
 

@@ -30,7 +30,7 @@ export class AuthService {
         );
 
         const tokenPayload: TokenPayload = {
-            userId: user.userId,
+            userId: user.id,
         };
         const token = this.jwtService.sign(tokenPayload);
         response.cookie('Authentication', token, {
@@ -38,6 +38,8 @@ export class AuthService {
             httpOnly: true,
             expires,
         });
+
+        Logger.log('use signed in with tokenpayload :',tokenPayload);
 
         return <ApiResponse<TokenPayload>>{
             message: 'Utilisateur authentifié',
