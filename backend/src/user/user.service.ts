@@ -25,6 +25,16 @@ export class UserService {
     });
   }
 
+  async findById(id: number): Promise<User | undefined> {
+    return this.prismaService.user.findFirst({
+      where: {
+        id: {
+          equals: id
+        }
+      }
+    });
+  }
+
   async findByPhone(phone: string): Promise<User | undefined> {
     return this.prismaService.user.findFirst({
       where: {
@@ -35,11 +45,12 @@ export class UserService {
     });
   }
 
-  async changePassword(request: ChangePasswordRequest): Promise<ApiResponse<any>> {
-    Logger.log('change user {0} password ', request.email);
-    const user = await this.findOne(request.email);
-    if (!user) return <ApiResponse<any>>{
-      message: "cet email n'est pas valide",
+  async changePassword(id: any,request: ChangePasswordRequest): Promise<ApiResponse<any>> {
+    const userId = Number(id);
+    Logger.log('change user password ',userId, request.email);
+    const user = await this.findById(userId);
+    if (!user || !userId || user?.email !== request.email) return <ApiResponse<any>>{
+      message: "cet utilisateur n'est pas valide",
       success: false
     };
 
@@ -47,14 +58,14 @@ export class UserService {
     try {
       await this.prismaService.user.update({
         where: {
-          email: request.email
+          id: userId
         },
         data: {
           hash
         }
       });
 
-      Logger.log('user {0} password changed', request.email);
+      Logger.log('user password changed', request.email);
       return <ApiResponse<any>>{
         message: "Mot de passe changer avec succes",
         success: true
@@ -97,7 +108,7 @@ export class UserService {
   }
 
   async updateProfile(id: any, updated: UserProfileDto) {
-    Logger.log('update  user profile {0} ', id);
+    Logger.log('update  user profile ', id,updated);
     const userId = Number(id);
     const user = await this.prismaService.user.findFirst(
       {

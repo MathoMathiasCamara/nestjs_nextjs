@@ -2,9 +2,14 @@
 import Image from 'next/image'
 import React from 'react'
 
-export default function ProfileAvatar({ url } : { url: string}) {
+export default function ProfileAvatar({ url }: { url: string }) {
   return (
-    <Image className="rounded-full bg-gray-50" width={32} height={32}
-                    src={url} alt="" />
+    <Image
+      src={url}
+      width={36}
+      height={36}
+      alt="Avatar"
+      className="overflow-hidden rounded-full"
+    />
   )
 }

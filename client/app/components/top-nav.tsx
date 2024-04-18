@@ -1,47 +1,37 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import Image from 'next/image'
 import React, { useState } from 'react'
 import SearchBar from './search-bar'
-import { BellIcon, MenuIcon } from 'lucide-react'
 import ProfileDropdownMenu from './profile-dropdown-menu'
+import SideBarMobile from './side-bar.mobile'
+import BreadCrumb, { BreadCrumbItem } from './breadcrumb'
 
 export default function TopNav() {
 
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const breadcrumbItems: BreadCrumbItem[] = [
+    {
+      label: 'Page 1',
+      href: '#',
+      isPage: false
+    },
+    {
+      label: 'Page 2',
+      href: '#',
+      isPage: false
+    },
+    {
+      label: 'Current Page ',
+      href: '#',
+      isPage: true
+    }
+  ]
 
   return (
-
-    // TODO
-    // add side bar for mobile
-
-    <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-      <Button type="button" className="-m-2.5 p-2.5 text-gray-700 lg:hidden" onClick={() => setSidebarOpen(true)}>
-        <span className="sr-only">Open sidebar</span>
-        <MenuIcon className="h-6 w-6" />
-      </Button>
-
-      {/* <!-- Separator --> */}
-      <div className="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true"></div>
-
-      <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-        <SearchBar />
-        <div className="flex items-center gap-x-4 lg:gap-x-6">
-          <Button variant='link' className="-m-2.5 p-2.5 cursor-pointer text-gray-400 hover:text-gray-500">
-            <span className="sr-only">View notifications</span>
-            <BellIcon className="h-6 w-6" aria-hidden="true" />
-          </Button>
-
-          {/* <!-- Separator --> */}
-          <div className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10" aria-hidden="true"></div>
-
-          {/* <!-- Profile dropdown --> */}
-          <ProfileDropdownMenu/>
-        </div>
-      </div>
-    </div>
+    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+      <SideBarMobile/>
+      <BreadCrumb items={breadcrumbItems} />
+      <SearchBar />
+      <ProfileDropdownMenu />
+    </header>
   )
 }

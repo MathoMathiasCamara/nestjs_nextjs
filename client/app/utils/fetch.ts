@@ -1,3 +1,5 @@
+'use server'
+
 import { cookies } from "next/headers";
 import { BACKEND_URL } from "../constants/api";
 
@@ -6,11 +8,11 @@ const getHeaders = () => ({
 });
 
 export const post = async (path: string, formData: FormData) => {
-    return postJson(path,Object.fromEntries(formData))
+    return postJson(path, Object.fromEntries(formData))
 };
 
 export const postJson = async (path: string, data: object) => {
-    const res = await postAndResponse(path,data);
+    const res = await postAndResponse(path, data);
     const parsedRes = await res.json();
     return parsedRes;
 };
@@ -26,7 +28,25 @@ export const postAndResponse = async (path: string, data: object) => {
 
 export const get = async (path: string) => {
     const res = await fetch(`${BACKEND_URL}/${path}`, {
-      headers: { ...getHeaders() },
+        headers: { ...getHeaders() },
     });
     return res.json();
-  };
+};
+
+export const put = async (path: string, formData: FormData) => {
+    return putJson(path, Object.fromEntries(formData));
+};
+
+export const putJson = async (path: string, data: object) => {
+    const res = await putAndResponse(path, data);
+    const parsedRes = await res.json();
+    return parsedRes;
+};
+
+export const putAndResponse = async (path: string, data: object) => {
+    return fetch(`${BACKEND_URL}/${path}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", ...getHeaders() },
+        body: JSON.stringify(data),
+    });
+};

@@ -34,9 +34,8 @@ export class UserController {
   }
 
 
-  @Public()
-  @Post('change-password')
-  changePassword(@Body() request: ChangePasswordRequest) {
-    return this.userService.changePassword(request);
+  @Put('change-password/:id')
+  changePassword(@Param() params: any,@Body() request: ChangePasswordRequest) {
+    return this.userService.changePassword(params.id,request);
   }
 }

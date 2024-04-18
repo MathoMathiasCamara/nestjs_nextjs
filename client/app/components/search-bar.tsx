@@ -5,14 +5,13 @@ import React from 'react'
 
 export default function SearchBar() {
     return (
-        <div className="relative flex flex-1">
-            <Label htmlFor="search-field" className="sr-only">Search</Label>
-            <Search
-                className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
-                aria-hidden="true"
+        <div className="relative ml-auto flex-1 md:grow-0">
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Input
+                type="search"
+                placeholder="Search..."
+                className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
             />
-            <Input id="search-field" className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
-                placeholder="Search..." type="search" name="search" />
         </div>
     )
 }
