@@ -81,6 +81,13 @@ export default function SignUp() {
                   }
                 </div>
               </div>
+
+              <div id='message-error' aria-live='polite' aria-atomic='true'>
+                {
+                  state.message &&
+                  <p className='mt-2 text-sm text-red-500' key={state.message}>{state.message}</p>
+                }
+              </div>
               <Button type="submit" className="w-full">
                 Créer un compte
               </Button>

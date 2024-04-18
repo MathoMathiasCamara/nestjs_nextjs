@@ -9,14 +9,30 @@ import Link from 'next/link'
 import UserProfile from './user-profile'
 import { State, updateProfile } from './actions'
 import { useFormState } from 'react-dom'
+import { BreadCrumbItem } from '@/lib/breadcrumbItem'
+import { changeBreadcrumb } from '@/lib/features/breadcrumbsSlice'
+import { useDispatch } from 'react-redux'
+import updateBreadcrumbs from '@/lib/breadcrumb.action'
+
 
 export default function ProfileForm({ profile }: { profile: UserProfile | undefined }) {
+
+    // update the breadcrumb using redux
+    updateBreadcrumbs([
+        {
+            label: 'Profile',
+            href: '/user/profile',
+            isPage: true
+        }
+    ]);
+
+    //form state & action
     const initialState: State = { message: null, errors: undefined };
     const updateProfileWithId = updateProfile.bind(null, profile?.id ?? 0);
-    const [state, dispatch] = useFormState(updateProfileWithId, initialState);
+    const [state, dispatchAction] = useFormState(updateProfileWithId, initialState);
 
     return (
-        <form action={dispatch}>
+        <form action={dispatchAction}>
             <Card className="w-full">
                 <CardHeader>
                     <CardTitle className="text-xl">Profile</CardTitle>

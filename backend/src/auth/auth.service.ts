@@ -75,6 +75,7 @@ export class AuthService {
                 }
             });
 
+            Logger.log('user signed up');
             if (!user.id)
                 return <ApiResponse<null>>{
                     message: 'Compte non enregistrer!',
@@ -109,6 +110,7 @@ export class AuthService {
         try {
             const user = await this.userService.findOne(username);
             const authenticated = await bcrypt.compare(pass, user.hash);
+            Logger.log('user authenticated :',authenticated);
             if (!authenticated) {
                 throw new UnauthorizedException('Credentials are not valid.');
             }

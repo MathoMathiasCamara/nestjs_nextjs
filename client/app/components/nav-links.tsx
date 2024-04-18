@@ -8,7 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 
 export const links = [
     { name: 'Tableau de board', href: '/dashboard', icon: PieChart },
-    { name: 'Appartements', href: '/apartement', icon: Building2 },
+    { name: 'Appartements', href: '/apartements', icon: Building2 },
 ];
 
 export default function NavLinks() {

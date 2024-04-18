@@ -60,10 +60,9 @@ export async function signUp(prevState: State, formData: FormData) {
         }
     }
 
-
     //send data to api
     const apiResult: ApiResponse<any> = await post('auth/signup', formData);
-
+    console.log('signing result :',apiResult);
     if (apiResult.success) {
         //sign in
         const data = {

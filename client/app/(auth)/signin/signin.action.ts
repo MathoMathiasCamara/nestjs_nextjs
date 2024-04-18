@@ -36,17 +36,19 @@ export default async function signIn(_prevState: State, formData: FormData) {
     const validatedFields = await FormSchema.safeParseAsync(rawFormData);
 
     if (!validatedFields.success)
-        return {
+       {
+        console.log('connexion failed!');
+         return {
             errors: validatedFields.error.flatten().fieldErrors,
             message: 'Champs manquants. Échec de la connection.'
         }
-
+       }
 
     const res = await postAndResponse('auth/signin', rawFormData)
     const parsedRes = await res.json();
-    if (!res.ok) {
-        return { error: parsedRes };
-    }
+    if (!res.ok) 
+        return { error: parsedRes, message: res.statusText };
+
 
     setAuthCookie(res);
     redirect("/dashboard");

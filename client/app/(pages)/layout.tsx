@@ -1,13 +1,10 @@
 import { ReactNode } from "react"
 import SideBar from "../components/side-bar"
 import TopNav from "../components/top-nav"
-import { Provider } from 'react-redux'
-
 
 export default function Layout({ children }: { children: ReactNode }) {
 
   return (
-    
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       {/* Left nav */}
       <SideBar />

@@ -9,9 +9,25 @@ import { Label } from '@/components/ui/label'
 import Link from 'next/link'
 import { useFormState } from 'react-dom'
 import { State, changePassword } from './change-password.action'
+import updateBreadcrumbs from '@/lib/breadcrumb.action'
 
 export default function ChangePasswordForm({ profile }: { profile: UserProfile | undefined }) {
-    const initialState : State  = { message: null, errors: undefined };
+
+    // update the breadcrumb using redux
+    updateBreadcrumbs([
+        {
+            label: 'Profile',
+            href: '/user/profile',
+            isPage: false
+        },
+        {
+            label: 'Changer mot de passe',
+            href: '/user/change-password',
+            isPage: true
+        }
+    ]);
+    
+    const initialState: State = { message: null, errors: undefined };
     const changePasswordWithId = changePassword.bind(null, profile?.id ?? 0);
     const [state, dispatch] = useFormState(changePasswordWithId, initialState);
     return (
@@ -26,13 +42,13 @@ export default function ChangePasswordForm({ profile }: { profile: UserProfile |
                     </CardHeader>
 
                     <CardContent>
-                    <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        className='sr-only w-0'
-                        defaultValue={profile?.email}
-                    />
+                        <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            className='sr-only w-0'
+                            defaultValue={profile?.email}
+                        />
                         <div className="grid gap-2">
                             <Label htmlFor="newPassword"
                                 className="block text-sm font-medium leading-6 text-gray-900">
