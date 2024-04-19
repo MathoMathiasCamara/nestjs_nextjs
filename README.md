@@ -1,5 +1,9 @@
 # NestJs,Prisma,NextJs 14, Tailwindcss,shadcn/UI
-Simple template with Nestjs backend and Nextjs 14 frontend with a PIRSMA. Already implements Authentication, SignUp and Profile features.
+Simple template with 	[**Nestjs**](https://docs.nestjs.com/)  backend and [**Nextjs 14**](https://nextjs.org/) frontend with [**Prisma**](https://www.prisma.io/docs/). Already implements:
+- **Authentication**
+- **SignUp**
+- **Profile**
+- **Password Change**
 
 ## Sign In
 <img width="748" alt="signin" src="https://github.com/MathoMathiasCamara/nestjs_nextjs/assets/24854338/cd09ca3b-0826-4af4-886d-dbee4a7a6043">
