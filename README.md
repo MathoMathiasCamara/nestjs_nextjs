@@ -5,6 +5,9 @@ Simple template with 	[**Nestjs**](https://docs.nestjs.com/)  backend and [**Nex
 - **Profile**
 - **Password Change**
 
+# Commands
+use the command `npm start` in the root directory to start both the backend & frontend.
+
 ## Sign In
 <img width="748" alt="signin" src="https://github.com/MathoMathiasCamara/nestjs_nextjs/assets/24854338/cd09ca3b-0826-4af4-886d-dbee4a7a6043">
 
@@ -16,3 +19,4 @@ Simple template with 	[**Nestjs**](https://docs.nestjs.com/)  backend and [**Nex
 
 ## Dashboard
 <img width="1264" alt="dashboard" src="https://github.com/MathoMathiasCamara/nestjs_nextjs/assets/24854338/57e7acac-7dda-4c31-ad9c-f7b314a58577">
+
